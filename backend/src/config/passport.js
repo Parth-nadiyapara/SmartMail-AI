@@ -10,7 +10,16 @@ passport.use(
         },
         async (accessToken, refreshToken, profile, done) => {
             
-            return done(null, profile);
+            const user = {
+                id: profile.id,
+                displayName: profile.displayName,
+                emails: profile.emails,
+                photos: profile.photos,
+                accessToken,
+                refreshToken
+            };
+            
+            return done(null, user);
 
         }
     )

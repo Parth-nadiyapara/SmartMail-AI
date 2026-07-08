@@ -4,6 +4,8 @@ const helmet = require("helmet");
 const compression = require("compression");
 const session = require("express-session");
 
+const gmailRoutes = require("./routes/gmail.routes");
+
 const passport = require("./config/passport");
 
 const healthRoutes = require("./routes/health.routes");
@@ -55,6 +57,8 @@ app.use(passport.session());
 app.use("/api/v1/health", healthRoutes);
 
 app.use("/api/v1/auth", authRoutes);
+
+app.use("/api/v1/emails", gmailRoutes);
 
 /* ===========================
    Root Route
