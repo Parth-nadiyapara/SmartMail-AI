@@ -5,6 +5,7 @@ const compression = require("compression");
 const session = require("express-session");
 
 const gmailRoutes = require("./routes/gmail.routes");
+const analysisRoutes = require("./routes/analysis.routes");
 
 const passport = require("./config/passport");
 
@@ -59,6 +60,8 @@ app.use("/api/v1/health", healthRoutes);
 app.use("/api/v1/auth", authRoutes);
 
 app.use("/api/v1/emails", gmailRoutes);
+
+app.use("/api/v1/analysis", analysisRoutes);
 
 /* ===========================
    Root Route

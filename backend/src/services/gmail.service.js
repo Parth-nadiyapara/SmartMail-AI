@@ -56,7 +56,25 @@ const getInboxEmails = async (accessToken) => {
 
 };
 
+/**
+ * Fetch a single email by its Gmail message ID.
+ * Used for on-demand AI analysis.
+ */
+const getEmailById = async (accessToken, messageId) => {
+
+    const gmailClient = getGmailClient(accessToken);
+
+    const response = await gmailClient.users.messages.get({
+        userId: "me",
+        id: messageId
+    });
+
+    return mapEmail(response.data);
+
+};
+
 module.exports = {
     getGmailClient,
-    getInboxEmails
+    getInboxEmails,
+    getEmailById
 };
