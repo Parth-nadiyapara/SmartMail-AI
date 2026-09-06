@@ -7,6 +7,9 @@ const session = require("express-session");
 const gmailRoutes = require("./routes/gmail.routes");
 const analysisRoutes = require("./routes/analysis.routes");
 
+const analysisHistoryRoutes =
+   require("./routes/analysis-history.routes");
+
 const passport = require("./config/passport");
 
 const healthRoutes = require("./routes/health.routes");
@@ -36,11 +39,11 @@ app.use(express.urlencoded({ extended: true }));
 =========================== */
 
 app.use(
-    session({
-        secret: process.env.SESSION_SECRET,
-        resave: false,
-        saveUninitialized: false
-    })
+   session({
+      secret: process.env.SESSION_SECRET,
+      resave: false,
+      saveUninitialized: false
+   })
 );
 
 /* ===========================
@@ -63,15 +66,20 @@ app.use("/api/v1/emails", gmailRoutes);
 
 app.use("/api/v1/analysis", analysisRoutes);
 
+app.use(
+   "/api/v1/analysis-history",
+   analysisHistoryRoutes
+);
+
 /* ===========================
    Root Route
 =========================== */
 
 app.get("/", (req, res) => {
 
-    res.json({
-        message: "SmartMail AI Backend Running"
-    });
+   res.json({
+      message: "SmartMail AI Backend Running"
+   });
 
 });
 

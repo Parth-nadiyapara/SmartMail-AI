@@ -36,7 +36,8 @@ const analyzeEmailController = async (req, res, next) => {
 
         const result = await analyzeEmail(
             req.user.accessToken,
-            id
+            id,
+            req.user
         );
 
         return res.status(200).json({
