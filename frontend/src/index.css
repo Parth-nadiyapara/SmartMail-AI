@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-surface-bg text-ink font-sans antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  html.dark body {
+    @apply bg-dark-bg text-dark-text;
+  }
+
+  * {
+    @apply border-surface-border;
+  }
+
+  html.dark * {
+    @apply border-dark-border;
+  }
+
+  :focus-visible {
+    outline: 2px solid #4285f4;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: #e8f0fe;
+  }
+
+  html.dark ::selection {
+    background: rgba(66, 133, 244, 0.35);
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .thin-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .thin-scrollbar::-webkit-scrollbar-thumb {
+    background: #dadce0;
+    border-radius: 999px;
+  }
+  html.dark .thin-scrollbar::-webkit-scrollbar-thumb {
+    background: #3c4043;
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .safe-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f1f3f4 25%, #e8eaed 37%, #f1f3f4 63%);
+  background-size: 800px 100%;
+}
+html.dark .skeleton {
+  background: linear-gradient(90deg, #303134 25%, #3c4043 37%, #303134 63%);
+  background-size: 800px 100%;
+}
